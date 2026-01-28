@@ -1,0 +1,35 @@
+name: Build iOS App
+
+on:
+  push:
+    branches: [ "main" ] # يعمل كل ما ترفع كود جديد على الـ main
+  workflow_dispatch: # يسمح لك بتشغيل البناء يدوياً بضغطة زر
+
+jobs:
+  build:
+    name: Build iOS
+    runs-on: macos-latest # نطلب خادم ماك إجباري
+
+    steps:
+      # 1. جلب الكود من المستودع
+      - uses: actions/checkout@v4
+
+      # 2. تثبيت بيئة Flutter
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          
+      # 3. تحميل المكاتب (Packages)
+      - name: Install dependencies
+        run: flutter pub get
+
+      # 4. بناء نسخة iOS (بدون توقيع إلكتروني حالياً لتجربة البناء)
+      - name: Build iOS (No Codesign)
+        run: flutter build ios --release --no-codesign
+
+      # 5. رفع الملف الناتج (Runner) عشان تقدر تحمله وتشوفه
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-build
+          path: build/ios/iphoneos/Runner.app
