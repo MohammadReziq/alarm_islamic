@@ -1,0 +1,170 @@
+You are a Senior Flutter Engineer with deep experience in Android system behavior.
+
+We are building a production-grade smart Islamic alarm app called "Nashur".
+This project combines spiritual discipline with advanced mobile engineering.
+
+Follow the instructions strictly.
+Use the attached images ONLY as UX flow reference (alarm list, toggles, time picker),
+NOT for colors or styling.
+
+==================================================
+CORE CONCEPT (ABSOLUTE RULE – NO EXCEPTIONS)
+==================================================
+This alarm CANNOT be stopped by touch.
+There is NO stop button.
+There is NO swipe, tap, or gesture to dismiss the alarm.
+
+The ONLY way to stop the alarm is by VOICE.
+
+Voice phrases (Arabic – both accepted):
+1. "الحمد لله الذي أحيانا بعدما أماتنا وإليه النشور"
+2. "الحمد لله الذي أحياني بعدما أماتني وإليه النشور"
+
+==================================================
+VOICE MATCHING LOGIC (CRITICAL)
+==================================================
+Use fuzzy keyword matching (NOT full sentence matching).
+
+The spoken text is valid if it contains:
+- "الحمد"
+- AND ("أحيانا" OR "أحياني")
+- AND "النشور"
+
+Handle:
+- Weak pronunciation
+- Partial phrases
+- Background noise
+- Sleepy voice tone
+
+Implement this as:
+bool isValidDhikr(String spokenText)
+
+==================================================
+TECH STACK (MANDATORY)
+==================================================
+Framework: Flutter (latest stable)
+State Management: GetX (GetController + reactive state)
+Local Storage: Hive (NO backend dependency for core features)
+
+Alarm & Background Execution:
+- flutter_local_notifications
+- android_alarm_manager_plus
+- exact alarms (Android 12+ compliance)
+
+Audio:
+- audioplayers (looping alarm sound)
+
+Speech Recognition:
+- speech_to_text
+- Arabic locale: ar-SA
+- Auto-start listening when alarm rings
+
+Notifications:
+- Local notifications ONLY
+- Full-screen intent notification for alarm
+- Persistent notification while alarm is ringing
+
+==================================================
+OPTIONAL CLOUD (NON-BLOCKING)
+==================================================
+Firebase is OPTIONAL and must be isolated.
+
+If used:
+- Firebase Analytics (ONLY for anonymous usage stats)
+- Firebase Crashlytics (for crash reporting)
+
+DO NOT:
+- Require login
+- Store user identity
+- Depend on internet to run alarms
+
+==================================================
+APP ARCHITECTURE (STRICT)
+==================================================
+lib/
+ ├─ models/
+ │   ├─ alarm_model.dart
+ │   ├─ stats_model.dart
+ │
+ ├─ services/
+ │   ├─ alarm_service.dart        // scheduling, canceling, rescheduling
+ │   ├─ notification_service.dart // local notifications & permissions
+ │   ├─ voice_service.dart        // speech-to-text & fuzzy matching
+ │
+ ├─ controllers/
+ │   ├─ alarm_controller.dart     // GetX logic
+ │   ├─ stats_controller.dart
+ │
+ ├─ screens/
+ │   ├─ alarm_list_screen.dart
+ │   ├─ alarm_ring_screen.dart
+ │   ├─ dashboard_screen.dart
+ │
+ ├─ widgets/
+ │   ├─ gold_card.dart
+ │   ├─ digital_clock.dart
+ │
+ └─ main.dart
+
+==================================================
+UI / DESIGN SYSTEM
+==================================================
+Theme: Islamic Luxury Dark Mode (ONLY dark)
+
+Colors:
+- Background: #0B1026 (Midnight Blue)
+- Accent / Primary: #D4AF37 (Matte Gold)
+- Text: White / Silver tones
+
+Typography:
+- Google Fonts: Tajawal or Cairo
+- Large readable clock font
+
+Style Rules:
+- Minimal
+- Calm
+- No clutter
+- Spiritual, respectful tone
+
+==================================================
+ALARM RING SCREEN (VERY IMPORTANT)
+==================================================
+- Full screen (immersive mode)
+- Disable back button
+- Prevent app minimization if possible
+- Large digital time
+- Text: "انطق دعاء الاستيقاظ لإيقاف المنبه"
+- Start microphone automatically
+- Show subtle mic animation while listening
+
+==================================================
+DASHBOARD (LOCAL ANALYTICS)
+==================================================
+Stored locally using Hive:
+- currentStreak
+- totalWakeups
+- lastWakeupTime
+
+Visuals:
+- Gold progress indicators
+- Card-based layout
+- Weekly consistency hint (textual or simple chart)
+
+==================================================
+PERMISSIONS & EDGE CASES
+==================================================
+- Handle microphone permission denial gracefully
+- Handle notification permission (Android 13+)
+- Explain permissions in calm Islamic-friendly language
+- Fail-safe: alarm MUST continue ringing if voice fails
+
+==================================================
+IMPORTANT RULES
+==================================================
+- No authentication
+- No forced internet
+- No ads
+- All alarms MUST work offline
+- Code must be clean, modular, and scalable
+
+Generate clean, production-ready Flutter code.

@@ -1,0 +1,53 @@
+PROJECT RULES – NASHUR APP
+
+1. This app is a VOICE-LOCKED alarm.
+   Never add a stop button.
+
+2. Voice recognition must always auto-start
+   when the alarm rings.
+
+3. Fuzzy matching is mandatory:
+   Accept imperfect pronunciation.
+
+4. UX must resemble Android Clock behavior
+   but with custom Islamic luxury styling.
+
+5. Dark mode only.
+   No light mode.
+
+6. No login, no cloud, no tracking.
+
+7. All code must remain modular and readable.
+
+8. This app is spiritually sensitive:
+   UI must feel calm, respectful, and focused.
+
+Any future code must respect these rules.
+==================================================
+VISUAL GENERATION RULE (MANDATORY)
+==================================================
+Any illustrative image, mockup, or visual reference used in this project
+MUST be generated using:
+
+- Gemini (Google)
+- Nano Banana image generation pipeline
+
+Rules:
+- Do NOT invent random visuals
+- Do NOT use generic placeholders
+- The generated image must match:
+  - Dark Islamic luxury theme
+  - Midnight Blue background
+  - Matte Gold accents
+  - Calm, minimal, spiritual tone
+
+If a visual asset is required:
+1. First describe it clearly
+2. Then generate it using Gemini + Nano Banana
+3. Then apply it consistently in UI components
+
+All visuals must feel:
+- Respectful
+- Premium
+- Non-distracting
+- Spiritually appropriate
